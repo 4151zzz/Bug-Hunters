@@ -1,3 +1,4 @@
+
 BugHunters-app:
     image: prawee/strapi:latest
     container_name: bughunters-app
@@ -10,3 +11,14 @@ BugHunters-app:
       DATABASE_PASSWORD: ${APP_DB_PASS}
     ports:
       - "${APP_PORT}:${APP_STRAPI_PORT}"
+      
+services:
+  BugHunters_DB:
+    image: postgres:latest
+    container_name: bughunters_db
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "${DATABASE_PORT}:5432"
