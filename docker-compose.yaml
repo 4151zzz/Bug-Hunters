@@ -1,3 +1,4 @@
+
 BugHunters-pgadmin:
     image: dpage/pgadmin4
     container_name: bughunters-pgadmin
@@ -6,3 +7,15 @@ BugHunters-pgadmin:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "${PGADMIN_PORT}:80"
+
+services:
+  BugHunters_DB:
+    image: postgres:latest
+    container_name: bughunters_db
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "${DATABASE_PORT}:5432"
+    
